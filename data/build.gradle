@@ -1,0 +1,54 @@
+apply from: "$rootDir/gradle-files/application.gradle"
+
+
+def apiProperties = new Properties()
+apiProperties.load(new FileInputStream(rootProject.file('api.properties')))
+
+
+android {
+    defaultConfig {
+
+        buildConfigField("String", "BASE_API_URL", "\"${apiProperties['BASE_API_URL']}\"")
+        buildConfigField("String", "API_KEY", "\"${apiProperties['API_KEY']}\"")
+
+//        compileSdkVersion 29
+//        minSdkVersion 14
+//        targetSdkVersion 29
+//        versionCode 1
+//        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    api project(':domain')
+
+    kapt libs.daggerProcessor
+    kapt libs.daggerCompiler
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation libs.rxJava
+    implementation libs.daggerAndroid
+    implementation libs.daggerSupport
+    implementation libs.std
+    implementation libs.appcompat
+    implementation libs.ktx
+    implementation libs.retrofit
+    implementation libs.converterGson
+    implementation libs.rxjavaAdapter
+    implementation libs.okHttp
+    implementation libs.logging
+    implementation libs.mockServer
+    implementation libs.stetho
+    implementation libs.chuckDebug
+}

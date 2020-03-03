@@ -1,0 +1,16 @@
+apply from: "$rootDir/gradle-files/application.gradle"
+
+android {
+
+    sourceSets {
+        main.res.srcDirs += 'src/main/kotlin'
+    }
+}
+
+dependencies {
+
+    def libs = rootProject.ext.libs
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation libs.rxJava
+}

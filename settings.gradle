@@ -1,0 +1,3 @@
+include ':app', ':presentation', ':data', ':domain', ':common'
+include ':uimodules:home',':uimodules:common'
+rootProject.name='ModularCleanApp'

@@ -1,0 +1,25 @@
+apply from: "$rootDir/gradle-files/application.gradle"
+
+android {
+
+    sourceSets {
+        main.res.srcDirs += 'src/main/kotlin'
+    }
+}
+
+dependencies {
+
+    implementation project(':presentation')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation libs.support
+    implementation libs.appcompat
+    implementation libs.androidxRecyclerView
+    implementation libs.supportDesign
+    implementation libs.constraintLayout
+    implementation libs.daggerAndroid
+    implementation libs.daggerSupport
+    implementation libs.daggerProcessor
+    implementation libs.daggerCompiler
+
+}
